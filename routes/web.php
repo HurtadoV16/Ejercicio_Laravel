@@ -10,3 +10,5 @@ Route::get('/', function () {
 });
 
 Route::resource('camioneros', CamioneroController::class);
+Route::get('camionero',[CamioneroController::class,'create']);
+Route::post('camionero/store', [CamioneroController::class,'store'])->name('frmcamioneros.store');

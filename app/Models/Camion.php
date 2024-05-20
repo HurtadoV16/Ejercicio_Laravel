@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Camion extends Model
 {
     public function camioneros(){
-        return $this->belongsToMany('App\Models\Camionero');
+        return $this->belongsToMany('App\Models\Camioneros');
     }
+    use HasFactory;
 }

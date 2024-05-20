@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Camionero extends Model
 {
-    public function paquetes()
-    {
-        return $this->hasMany(Paquete::class);
+    public function camions(){
+        return $this->belongsToMany('App\Models\camion');
     }
+    public function paquetes(){
+        return $this->hasMany('App\Models\Paquete');
+
+    }
+    use HasFactory;
 }

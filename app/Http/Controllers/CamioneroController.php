@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Camionero;
 use App\Http\Requests\StoreCamioneroRequest;
 use App\Http\Requests\UpdateCamioneroRequest;
+use App\Models\Camion;
 use Illuminate\Http\Request;
 
 class CamioneroController extends Controller
@@ -24,19 +25,15 @@ class CamioneroController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'poblacion' => 'required',
-            'dni' => 'required',
-            'tfno' => 'required',
-            'direccion' => 'required',
-            'salario' => 'required|numeric',
-        ]);
-
-        Camionero::create($request->all());
-
-        return redirect()->route('camioneros.index')
-            ->with('success', 'Camionero creado correctamente.');
+        $camionero = new Camionero();
+        $camionero->nombre=$request->nombre;
+        $camionero->poblacion=$request->poblacion;
+        $camionero->dni=$request->dni;
+        $camionero->tfno=$request->tfno;
+        $camionero->direccion=$request->direccion;
+        $camionero->salario=$request->salario;
+        $camionero->save();
+        return $camionero;
     }
     public function show(Camionero $camionero)
     {
